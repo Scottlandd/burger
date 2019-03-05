@@ -1,13 +1,14 @@
-// Import the connectiong file
+// Import the connection file
 var connection = require("./connection.js");
 
 var orm = {
-    selectAll: function(whatToSelect, tableInput) {
-        var queryString = "SELECT ?? FROM ??";
-        connection.query(queryString, [whatToSelect, tableInput], function(err, result) {
+    selectAll: function(cb) {
+        var queryString = "SELECT * FROM burgers";
+        connection.query(queryString, function(err, result) {
             if (err) throw err;
-            console.log(result);
+            cb(result);
         });
     },
-    
 }
+
+module.exports = orm;
